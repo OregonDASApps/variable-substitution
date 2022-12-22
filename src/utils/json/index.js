@@ -11,7 +11,7 @@ module.exports = class JsonVarSub {
     }
 
     substitute(filePath, vars, delimiter, outputFile, writeToFile){
-        let rawData = fs.readFileSync(filePath);
+        let rawData = fs.readFileSync(filePath, {encoding:'utf8', flag:'r'});
         console.log(rawData);
         let jsonObject = JSON.parse(rawData);
         let jUtils = new JsonUtils()
