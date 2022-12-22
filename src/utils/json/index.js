@@ -13,7 +13,16 @@ module.exports = class JsonVarSub {
     substitute(filePath, vars, delimiter, outputFile, writeToFile){
         let rawData = fs.readFileSync(filePath, {encoding:'utf8', flag:'r'});
         console.log(rawData);
-        let jsonObject = JSON.parse(rawData);
+        let cleanedUpData = rawData.replace(/\\n/g, "\\n")
+            .replace(/\\'/g, "\\'")
+            .replace(/\\"/g, '\\"')
+            .replace(/\\&/g, "\\&")
+            .replace(/\\r/g, "\\r")
+            .replace(/\\t/g, "\\t")
+            .replace(/\\b/g, "\\b")
+            .replace(/\\f/g, "\\f");
+        console.log(cleanedUpData);
+        let jsonObject = JSON.parse(cleanedUpData);
         let jUtils = new JsonUtils()
         let modifiedJson = jsonObject;
         let variables = JSON.parse(vars)
