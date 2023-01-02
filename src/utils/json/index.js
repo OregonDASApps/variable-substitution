@@ -3,6 +3,7 @@
 const fs = require('fs');
 const _ = require('lodash')
 const JsonUtils = require('./jsonUtils.js')
+const { TextDecoder } = require('node:util');
 
 
 module.exports = class JsonVarSub {
@@ -15,11 +16,7 @@ module.exports = class JsonVarSub {
         console.log("About to parse");
         console.log(rawData);
 
-        if (rawData.charCodeAt(0) === 0xFEFF) {
-            rawData = rawData.substr(1);
-          }
-
-        let jsonObject = JSON.parse(rawData);
+        let jsonObject = JSON.parse(new TextDecoder('utf-8', { ignoreBOM: false}).decode(rawData));
         console.log("After parse");
         let jUtils = new JsonUtils()
         let modifiedJson = jsonObject;
