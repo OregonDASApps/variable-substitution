@@ -25,6 +25,9 @@ module.exports = class JsonVarSub {
             modifiedJson = jUtils.printObjectReplace(modifiedJson, '', variables[i]['key'], variables[i]['value'], delimiter);
         }
 
+        console.log("After swap");
+        console.log(JSON.stringify(modifiedJson));
+
         if(writeToFile) {
             fs.writeFileSync(outputFile, JSON.stringify(modifiedJson));
         }
