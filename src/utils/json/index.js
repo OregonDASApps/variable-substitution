@@ -1,7 +1,5 @@
 'use strict';
 
-import stripBom from 'strip-bom';
-
 const fs = require('fs');
 const _ = require('lodash')
 const JsonUtils = require('./jsonUtils.js')
