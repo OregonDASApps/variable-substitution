@@ -14,7 +14,11 @@ module.exports = class JsonVarSub {
         let rawData = fs.readFileSync(filePath);
         console.log("About to parse");
         console.log(rawData);
-        rawData = stripBom(rawData);
+
+        if (rawData.charCodeAt(0) === 0xFEFF) {
+            rawData = rawData.substr(1);
+          }
+
         let jsonObject = JSON.parse(rawData);
         console.log("After parse");
         let jUtils = new JsonUtils()
