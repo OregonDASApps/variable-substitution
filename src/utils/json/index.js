@@ -3,6 +3,7 @@
 const fs = require('fs');
 const _ = require('lodash')
 const JsonUtils = require('./jsonUtils.js')
+var iconvlite = require('iconv-lite');
 
 
 module.exports = class JsonVarSub {
@@ -14,7 +15,9 @@ module.exports = class JsonVarSub {
         let rawData = fs.readFileSync(filePath);
         console.log("About to parse");
         console.log(rawData);
-        let jsonObject = JSON.parse(rawData);
+
+        let encodedData = iconvlite.decode(rawData, "utf8");
+        let jsonObject = JSON.parse(encodedData);
         console.log("After parse");
         let jUtils = new JsonUtils()
         let modifiedJson = jsonObject;
