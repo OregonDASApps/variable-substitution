@@ -14,7 +14,7 @@ module.exports = class JsonVarSub {
         let rawData = fs.readFileSync(filePath);
         console.log("About to parse");
         console.log(rawData);
-
+        rawData = rawData.replace(/^\uFEFF/gm, "");
         let jsonObject = JSON.parse(rawData);
         console.log("After parse");
         let jUtils = new JsonUtils()
