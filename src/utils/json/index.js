@@ -13,6 +13,7 @@ module.exports = class JsonVarSub {
     substitute(filePath, vars, delimiter, outputFile, writeToFile){
         let rawData = fs.readFileSync(filePath);
         console.log("About to parse");
+        console.log(rawData);
         let jsonObject = JSON.parse(rawData);
         console.log("After parse");
         let jUtils = new JsonUtils()
