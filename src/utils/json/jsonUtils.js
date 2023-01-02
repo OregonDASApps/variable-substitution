@@ -23,9 +23,16 @@ module.exports = class JsonUtils {
         _.forEach(jsonObject, function(value, key){
             if(typeof jsonObject[key] === "object") {                     
                 self.printObjectReplace(jsonObject[key], self._createKeyName(keyName, key, delimiter), theKey, keyValue, delimiter);
-            } else {                                              
-                if(theKey == `${keyName}${delimiter}${key}`) {
-                    jsonObject[key] = keyValue;
+            } else {              
+                console.log("keyName: " + keyName);
+                if(keyName == '') {
+                    if(theKey == `${key}`) {
+                        jsonObject[key] = keyValue;
+                    }
+                } else {      
+                    if(theKey == `${keyName}${delimiter}${key}`) {
+                        jsonObject[key] = keyValue;
+                    }
                 }
 
             }
