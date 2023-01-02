@@ -1,5 +1,7 @@
 'use strict';
 
+import stripBom from 'strip-bom';
+
 const fs = require('fs');
 const _ = require('lodash')
 const JsonUtils = require('./jsonUtils.js')
@@ -14,7 +16,7 @@ module.exports = class JsonVarSub {
         let rawData = fs.readFileSync(filePath);
         console.log("About to parse");
         console.log(rawData);
-        rawData = rawData.replace(/^\uFEFF/gm, "");
+        rawData = stripBom(rawData);
         let jsonObject = JSON.parse(rawData);
         console.log("After parse");
         let jUtils = new JsonUtils()
