@@ -20,9 +20,10 @@ module.exports = class XmlVarSub {
 
 
         const parser = new XMLParser(options)
-        let xmlObj = parser.parse(rawData)
+		
+        let xmlObj = parser.parse(new TextDecoder('utf-8', { ignoreBOM: false}).decode(rawData))
         
-        let jsonObj = JSON.parse(new TextDecoder('utf-8', { ignoreBOM: false}).decode(JSON.stringify(xmlObj)))
+        let jsonObj = JSON.parse(JSON.stringify(xmlObj))
 		
         let jUtils = new JsonUtils()
         let modifiedJson = '';
